@@ -1,7 +1,7 @@
 Supplementary Code 1 for the v5 working manuscript
 
 Repository: https://github.com/296711867/qerl-ecg
-Submission snapshot: v5-submission-2026-10-01
+Submission snapshot: v5-submission-2026-10-01-r1
 No archive DOI is claimed. No software license has been assigned to the original
 analysis code; public visibility alone does not grant an open-source license.
 Source-data-derived tables retain the source CC BY 4.0 attribution requirements.

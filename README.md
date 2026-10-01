@@ -6,7 +6,7 @@ The study compares confidence stopping rules and deep Q-learning on 4,793 annota
 
 ## Reproduction
 
-See [README_REPRODUCTION.txt](README_REPRODUCTION.txt) for inputs, dependencies, the active training/analysis sequence, and limitations. The archived results retain the original v3/v4 experiment provenance; publication preparation did not rerun training. Version: `v5-submission-2026-10-01`.
+See [README_REPRODUCTION.txt](README_REPRODUCTION.txt) for inputs, dependencies, the active training/analysis sequence, and limitations. The archived results retain the original v3/v4 experiment provenance; publication preparation did not rerun training. Version: `v5-submission-2026-10-01-r1`.
 
 - `src/`, `scripts/`, `configs/`, `tests/`: analysis code and configuration, including historical helpers.
 - `data/splits/`: frozen patient partitions.
