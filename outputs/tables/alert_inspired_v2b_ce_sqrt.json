@@ -1,0 +1,248 @@
+{
+  "protocol": "ALERT-inspired minimal same-trajectory baseline",
+  "variant": "v2b_ce_sqrt",
+  "seed": 42,
+  "device": "cuda",
+  "state": "9-way argmax one-hot + max probability + margin + elapsed/10; no wmax",
+  "actions": [
+    "wait one second",
+    "stop"
+  ],
+  "reward": {
+    "correct": 1.0,
+    "wrong": -2.0,
+    "wait_per_second": -0.03,
+    "appropriate_abstain": 0.3,
+    "unnecessary_abstain": -1.0
+  },
+  "training": "exhaustive static transitions + offline DDQN",
+  "model_selection": "maximum validation mean return; test not loaded until all selections finish",
+  "test_used_for_selection": false,
+  "folds": [
+    {
+      "fold": 0,
+      "n_train": 2744,
+      "n_val": 1004,
+      "transitions": 45582,
+      "best_epoch": 15,
+      "best_val_return": 0.24530876494023907,
+      "checkpoint": "outputs\\checkpoints\\alert_inspired_v2b_ce_sqrt_f0.pt"
+    },
+    {
+      "fold": 1,
+      "n_train": 2873,
+      "n_val": 916,
+      "transitions": 47304,
+      "best_epoch": 15,
+      "best_val_return": 0.08614628820960699,
+      "checkpoint": "outputs\\checkpoints\\alert_inspired_v2b_ce_sqrt_f1.pt"
+    },
+    {
+      "fold": 2,
+      "n_train": 3058,
+      "n_val": 819,
+      "transitions": 49132,
+      "best_epoch": 15,
+      "best_val_return": 0.028717948717948714,
+      "checkpoint": "outputs\\checkpoints\\alert_inspired_v2b_ce_sqrt_f2.pt"
+    },
+    {
+      "fold": 3,
+      "n_train": 2965,
+      "n_val": 1009,
+      "transitions": 47646,
+      "best_epoch": 14,
+      "best_val_return": 0.309197224975223,
+      "checkpoint": "outputs\\checkpoints\\alert_inspired_v2b_ce_sqrt_f3.pt"
+    },
+    {
+      "fold": 4,
+      "n_train": 2739,
+      "n_val": 1045,
+      "transitions": 44492,
+      "best_epoch": 15,
+      "best_val_return": 0.007846889952153118,
+      "checkpoint": "outputs\\checkpoints\\alert_inspired_v2b_ce_sqrt_f4.pt"
+    }
+  ],
+  "test_results": [
+    {
+      "fold": 0,
+      "n_test": 1045,
+      "metrics": {
+        "coverage": 1.0,
+        "mean_decision_time": 3.0688995215311006,
+        "mean_decision_time_covered": 3.0688995215311006,
+        "earliness": 0.3068899521531101,
+        "macro_f1": 0.5476783811531643,
+        "macro_f1_all": 0.5476783811531643,
+        "balanced_acc": 0.5508615994570222,
+        "accuracy": 0.7215311004784689,
+        "selective_risk": 0.2784688995215311,
+        "mean_return": 0.1025263157894737,
+        "per_class_recall": {
+          "N": 0.8368794326241135,
+          "AFIB/AFL": 0.8144329896907216,
+          "AVB": 0.4,
+          "SND": 0.4090909090909091,
+          "SR-mPAC-BT": 0.4036697247706422,
+          "SR-mPVC-BT": 0.5401459854014599,
+          "SVTA": 0.5757575757575758,
+          "VT": 0.9777777777777777,
+          "MAT": 0.0
+        },
+        "badq_severe_alarm_rate": 0.037037037037037035,
+        "badq_false_alarm_rate": 0.037037037037037035,
+        "badq_severe_recall": null,
+        "badq_n": 27,
+        "badq_false_alarm_n": 1
+      }
+    },
+    {
+      "fold": 1,
+      "n_test": 1004,
+      "metrics": {
+        "coverage": 1.0,
+        "mean_decision_time": 3.2260956175298805,
+        "mean_decision_time_covered": 3.2260956175298805,
+        "earliness": 0.3226095617529881,
+        "macro_f1": 0.5529719165106263,
+        "macro_f1_all": 0.5529719165106263,
+        "balanced_acc": 0.5711375629890552,
+        "accuracy": 0.7778884462151394,
+        "selective_risk": 0.22211155378486055,
+        "mean_return": 0.2668824701195219,
+        "per_class_recall": {
+          "N": 0.8860103626943006,
+          "AFIB/AFL": 0.7857142857142857,
+          "AVB": 0.3333333333333333,
+          "SND": 0.4528301886792453,
+          "SR-mPAC-BT": 0.5478260869565217,
+          "SR-mPVC-BT": 0.7916666666666666,
+          "SVTA": 0.39285714285714285,
+          "VT": 0.95,
+          "MAT": 0.0
+        },
+        "badq_severe_alarm_rate": 0.046511627906976744,
+        "badq_false_alarm_rate": 0.046511627906976744,
+        "badq_severe_recall": null,
+        "badq_n": 43,
+        "badq_false_alarm_n": 2
+      }
+    },
+    {
+      "fold": 2,
+      "n_test": 916,
+      "metrics": {
+        "coverage": 1.0,
+        "mean_decision_time": 2.6299126637554586,
+        "mean_decision_time_covered": 2.6299126637554586,
+        "earliness": 0.2629912663755459,
+        "macro_f1": 0.49006235061797493,
+        "macro_f1_all": 0.49006235061797493,
+        "balanced_acc": 0.49395452051047073,
+        "accuracy": 0.6790393013100436,
+        "selective_risk": 0.32096069868995636,
+        "mean_return": -0.01177947598253275,
+        "per_class_recall": {
+          "N": 0.8852140077821011,
+          "AFIB/AFL": 0.7037037037037037,
+          "AVB": 0.5454545454545454,
+          "SND": 0.2222222222222222,
+          "SR-mPAC-BT": 0.22033898305084745,
+          "SR-mPVC-BT": 0.37168141592920356,
+          "SVTA": 0.59375,
+          "VT": 0.9032258064516129,
+          "MAT": 0.0
+        },
+        "badq_severe_alarm_rate": 0.0,
+        "badq_false_alarm_rate": 0.0,
+        "badq_severe_recall": 0.0,
+        "badq_n": 28,
+        "badq_false_alarm_n": 0
+      }
+    },
+    {
+      "fold": 3,
+      "n_test": 819,
+      "metrics": {
+        "coverage": 1.0,
+        "mean_decision_time": 3.7216117216117217,
+        "mean_decision_time_covered": 3.7216117216117217,
+        "earliness": 0.3721611721611721,
+        "macro_f1": 0.5379279142758991,
+        "macro_f1_all": 0.5379279142758991,
+        "balanced_acc": 0.5340551474398071,
+        "accuracy": 0.7545787545787546,
+        "selective_risk": 0.2454212454212454,
+        "mean_return": 0.18208791208791206,
+        "per_class_recall": {
+          "N": 0.88558352402746,
+          "AFIB/AFL": 0.8043478260869565,
+          "AVB": 0.0,
+          "SND": 0.08888888888888889,
+          "SR-mPAC-BT": 0.5531914893617021,
+          "SR-mPVC-BT": 0.7293233082706767,
+          "SVTA": 0.6451612903225806,
+          "VT": 1.0,
+          "MAT": 0.1
+        },
+        "badq_severe_alarm_rate": 0.075,
+        "badq_false_alarm_rate": 0.05128205128205128,
+        "badq_severe_recall": 1.0,
+        "badq_n": 40,
+        "badq_false_alarm_n": 2
+      }
+    },
+    {
+      "fold": 4,
+      "n_test": 1009,
+      "metrics": {
+        "coverage": 1.0,
+        "mean_decision_time": 3.7066402378592667,
+        "mean_decision_time_covered": 3.7066402378592667,
+        "earliness": 0.37066402378592667,
+        "macro_f1": 0.4656672508166696,
+        "macro_f1_all": 0.4656672508166696,
+        "balanced_acc": 0.43745252674056867,
+        "accuracy": 0.6987115956392468,
+        "selective_risk": 0.3012884043607532,
+        "mean_return": 0.014935579781962333,
+        "per_class_recall": {
+          "N": 0.9334532374100719,
+          "AFIB/AFL": 0.6716417910447762,
+          "AVB": 0.0,
+          "SND": 0.38461538461538464,
+          "SR-mPAC-BT": 0.05454545454545454,
+          "SR-mPVC-BT": 0.44696969696969696,
+          "SVTA": 0.7714285714285715,
+          "VT": 0.6744186046511628,
+          "MAT": 0.0
+        },
+        "badq_severe_alarm_rate": 0.03125,
+        "badq_false_alarm_rate": 0.03125,
+        "badq_severe_recall": null,
+        "badq_n": 32,
+        "badq_false_alarm_n": 1
+      }
+    }
+  ],
+  "test_summary": {
+    "macro_f1_all": {
+      "mean": 0.5188615626748667,
+      "sd": 0.03878298743827959
+    },
+    "mean_decision_time": {
+      "mean": 3.270631952457485,
+      "sd": 0.46007788548692846
+    },
+    "coverage": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "mean_return": {
+      "mean": 0.11093056035926745,
+      "sd": 0.11589627636893321
+    }
+  }
+}

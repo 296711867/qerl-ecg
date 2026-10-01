@@ -1,0 +1,104 @@
+# QERL-ECG: Quality-aware Early Reinforcement Learning for Intraoperative ECG Arrhythmia Recognition
+# 主配置（依据 chatGPT建议3 方案 + 本地数据核查结果 2026-09-03）
+
+project:
+  name: QERL_ECG
+  seed: 42
+  device: cuda   # RTX 5050 8GB
+
+paths:
+  annotations_dir: data/annotations/Annotation_Files_250907
+  metadata_csv: data/annotations/metadata.csv
+  raw_waveforms: data/raw          # 每例一个 .npz
+  processed: data/processed
+  splits: data/splits
+  outputs: outputs
+
+data:
+  ecg_track: ECG_II
+  sampling_rate: 100            # Hz; 教程 notebook 默认 100Hz，形态学足够，节省算力
+  margin_sec: 60                # 分析窗口前后各留 60s 余量
+  # 9 类主任务（排除 Unclassifiable / Noise / 空标签）
+  rhythm_classes:
+    N:          Normal Sinus Rhythm
+    AFIB/AFL:   Atrial Fibrillation/Flutter
+    AVB:        Atrioventricular Block
+    SND:        Sinus Node Dysfunction
+    SR-mPAC-BT: Patterned Atrial Ectopy
+    SR-mPVC-BT: Patterned Ventricular Ectopy
+    SVTA:       Supraventricular Tachyarrhythmia
+    VT:         Ventricular Tachycardia
+    MAT:        Wandering Atrial Pacemaker / Multifocal Atrial Tachycardia
+  exclude_labels: [Noise, Unclassifiable, ""]   # 空标签行 + Noise/Unclassifiable 不进主任务
+  exclude_beats: [Start, End, P]                # 标记行清洗
+  severe_classes: [VT, SVTA, AVB, SND]          # 危重心律（用于二分类/预警分析）
+
+preprocess:
+  bandpass_low: 0.5
+  bandpass_high: 40.0
+  notch_freq: 60              # 韩国 60Hz 工频
+  normalization: zscore
+  keep_realistic_noise: true  # 不做强伪影去除，保留 bad_signal_quality 创新点
+
+windows:
+  min_window_sec: 1
+  max_window_sec: 10
+  step_sec: 1                 # episode 内每次观察 +1s
+
+split:
+  strategy: stratified_group_kfold
+  group: case_id
+  folds: 5
+
+backbone:
+  type: tcn_gru
+  tcn:
+    channels: [32, 64, 128]
+    kernel_sizes: [5, 9, 15]
+    dropout: 0.2
+  gru:
+    hidden_size: 128
+    num_layers: 1
+    bidirectional: false
+
+classifier:
+  loss: class_balanced_focal   # effective number of samples 加权
+  focal_gamma: 2.0
+  epochs: 50
+  batch_size: 256
+  lr: 0.001
+
+quality_head:
+  enabled: true               # good / bad_quality / noise 三分类
+  hidden_size: 64
+  weight: 0.3
+
+rl:
+  algorithm: double_dueling_dqn
+  actions: [wait_1s, wait_2s, stop, abstain]
+  gamma: 0.99
+  lr: 0.0001
+  batch_size: 128
+  replay_size: 100000
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_decay_steps: 50000
+  episodes: 200000
+
+reward:
+  correct: 1.0
+  wrong: -2.0
+  wait_per_second: -0.03
+  appropriate_abstain: 0.3
+  unnecessary_abstain: -0.4
+
+evaluation:
+  metrics:
+    - macro_f1
+    - balanced_accuracy
+    - per_class_recall
+    - mean_decision_time
+    - earliness
+    - coverage
+    - selective_risk
+    - noise_false_alarm

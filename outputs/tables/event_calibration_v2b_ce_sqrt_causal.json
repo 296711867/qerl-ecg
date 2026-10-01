@@ -1,0 +1,176 @@
+{
+  "protocol": "post hoc validation-only scalar temperature fit",
+  "prefix_weighting": "each event contributes total weight one",
+  "folds": [
+    {
+      "fold": 0,
+      "temperature": 1.0694431280638146,
+      "raw": {
+        "ece10": 0.04761613835886561,
+        "brier": 0.4675616302999166,
+        "n_events": 1045,
+        "n_prefixes": 8449
+      },
+      "calibrated": {
+        "ece10": 0.0302111467919126,
+        "brier": 0.46561933626901736,
+        "n_events": 1045,
+        "n_prefixes": 8449
+      },
+      "raw_tau": [
+        0.9,
+        -0.9
+      ],
+      "calibrated_tau": [
+        0.95,
+        -1.0
+      ],
+      "raw_policy": {
+        "macro_f1_all": 0.5283600222236191,
+        "mean_decision_time": 2.8679425837320576,
+        "mean_return": 0.05975119617224879
+      },
+      "calibrated_policy": {
+        "macro_f1_all": 0.5349770169494179,
+        "mean_decision_time": 3.2066985645933013,
+        "mean_return": 0.07255502392344494
+      }
+    },
+    {
+      "fold": 1,
+      "temperature": 1.1345726932391085,
+      "raw": {
+        "ece10": 0.032608244209845066,
+        "brier": 0.381941181831399,
+        "n_events": 1004,
+        "n_prefixes": 7786
+      },
+      "calibrated": {
+        "ece10": 0.05692715593448039,
+        "brier": 0.38479007082667077,
+        "n_events": 1004,
+        "n_prefixes": 7786
+      },
+      "raw_tau": [
+        0.95,
+        -1.0
+      ],
+      "calibrated_tau": [
+        0.9,
+        -1.0
+      ],
+      "raw_policy": {
+        "macro_f1_all": 0.5763861078351711,
+        "mean_decision_time": 2.8595617529880477,
+        "mean_return": 0.3256872509960159
+      },
+      "calibrated_policy": {
+        "macro_f1_all": 0.5809213541125781,
+        "mean_decision_time": 2.851593625498008,
+        "mean_return": 0.33190239043824704
+      }
+    },
+    {
+      "fold": 2,
+      "temperature": 1.0504394414499951,
+      "raw": {
+        "ece10": 0.024880943873292552,
+        "brier": 0.43773260404825975,
+        "n_events": 916,
+        "n_prefixes": 7588
+      },
+      "calibrated": {
+        "ece10": 0.03421245836509196,
+        "brier": 0.43807182877773554,
+        "n_events": 916,
+        "n_prefixes": 7588
+      },
+      "raw_tau": [
+        0.95,
+        -0.8
+      ],
+      "calibrated_tau": [
+        0.95,
+        -1.5
+      ],
+      "raw_policy": {
+        "macro_f1_all": 0.5516511432638074,
+        "mean_decision_time": 3.715065502183406,
+        "mean_return": 0.135796943231441
+      },
+      "calibrated_policy": {
+        "macro_f1_all": 0.5212416163516213,
+        "mean_decision_time": 2.8504366812227073,
+        "mean_return": 0.10933406113537117
+      }
+    },
+    {
+      "fold": 3,
+      "temperature": 1.1193560440665533,
+      "raw": {
+        "ece10": 0.06087288291481244,
+        "brier": 0.43705707507210945,
+        "n_events": 819,
+        "n_prefixes": 6872
+      },
+      "calibrated": {
+        "ece10": 0.04433775767497169,
+        "brier": 0.43353949406021425,
+        "n_events": 819,
+        "n_prefixes": 6872
+      },
+      "raw_tau": [
+        0.95,
+        -0.5
+      ],
+      "calibrated_tau": [
+        0.95,
+        -0.5
+      ],
+      "raw_policy": {
+        "macro_f1_all": 0.5212453884828934,
+        "mean_decision_time": 3.912087912087912,
+        "mean_return": 0.213003663003663
+      },
+      "calibrated_policy": {
+        "macro_f1_all": 0.5184988025386162,
+        "mean_decision_time": 4.338217338217338,
+        "mean_return": 0.1965567765567765
+      }
+    },
+    {
+      "fold": 4,
+      "temperature": 0.8765339098706969,
+      "raw": {
+        "ece10": 0.05207474668787406,
+        "brier": 0.4544119982328733,
+        "n_events": 1009,
+        "n_prefixes": 8331
+      },
+      "calibrated": {
+        "ece10": 0.03831943485264647,
+        "brier": 0.4514673943057112,
+        "n_events": 1009,
+        "n_prefixes": 8331
+      },
+      "raw_tau": [
+        0.9,
+        -0.7
+      ],
+      "calibrated_tau": [
+        0.9,
+        -0.6
+      ],
+      "raw_policy": {
+        "macro_f1_all": 0.46899337124245094,
+        "mean_decision_time": 4.247770069375619,
+        "mean_return": 0.01654112983151631
+      },
+      "calibrated_policy": {
+        "macro_f1_all": 0.463944909878052,
+        "mean_decision_time": 3.9692765113974233,
+        "mean_return": 0.01894945490584737
+      }
+    }
+  ]
+}
